@@ -12,6 +12,8 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     # 작성자
     # author
+    # 카테고리
+    # categories
 
     # [pk]title
     def __str__(self):
