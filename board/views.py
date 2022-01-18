@@ -1,27 +1,37 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from .models import Post
 
 
-def index(request):
-    # 쿼리 날려서 온 결과(역순으로)
-    posts = Post.objects.all().order_by('-pk')
+class PostList(ListView):
+    model = Post
+    ordering = '-pk'
 
-    return render(
-        request,
-        'board/index.html',
-        {
-            # 쿼리 날려서 온 결과를 딕셔너리 형태로 저장
-            'posts': posts,
-        }
-    )
 
-def single_post_page(request, pk):
-    post = Post.objects.get(pk=pk)
+class PostDetail(DetailView):
+    model = Post
 
-    return render(
-        request,
-        'board/single_page.html',
-        {
-            'post': post,
-        }
-    )
+
+# def index(request):
+#     # 쿼리 날려서 온 결과(역순으로)
+#     posts = Post.objects.all().order_by('-pk')
+#
+#     return render(
+#         request,
+#         'board/index.html',
+#         {
+#             # 쿼리 날려서 온 결과를 딕셔너리 형태로 저장
+#             'posts': posts,
+#         }
+#     )
+#
+# def single_post_page(request, pk):
+#     post = Post.objects.get(pk=pk)
+#
+#     return render(
+#         request,
+#         'board/single_page.html',
+#         {
+#             'post': post,
+#         }
+#     )
