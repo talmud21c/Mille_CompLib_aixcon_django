@@ -13,7 +13,7 @@ class Post(models.Model):
     # 작성자
     # author
     # 카테고리
-    # categories
+    # category
 
     # [pk]title
     def __str__(self):
