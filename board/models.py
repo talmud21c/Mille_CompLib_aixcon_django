@@ -15,7 +15,10 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     # 이미지 업로드
-    image = models.ImageField(upload_to='board/images/%Y/%m/%d/', blank=True)
+    image_upload = models.ImageField(upload_to='board/images/%Y/%m/%d/', blank=True)
+
+    # 파일 업로드
+    file_upload = models.FileField(upload_to='board/files/%Y/%m/%d/', blank=True)
     # 작성자
     # author
 
