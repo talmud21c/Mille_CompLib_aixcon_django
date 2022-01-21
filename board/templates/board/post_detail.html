@@ -3,47 +3,45 @@
 {% load static %}
 {% block sabo_tab %}
     <div class="container-fluid">
-                                <div class="row" style="text-align: center; background-color: silver;">
-                                    <div class="col-lg-2">No.{{ post.pk }}</div>
-                                    <div class="col-lg-8">{{ post.title }}</div>
-                                    <div class="col-lg-2">{{ post.created_at }}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <p>{{ post.content }}</p>
-                                        {% if post.file_upload %}
-                                            {% if post.get_file_ext == 'jpg' or post.get_file_ext == 'jpeg' or post.get_file_ext == 'png' or post.get_file_ext == 'jfif' %}
-                                                <img src="{{ post.file_upload.url }}" alt="{{ post.get_file_name }}">
-                                                <br/>
-                                                <a href="{{ post.file_upload.url }}" class="col-lg-auto" style="width:auto; background-color: silver;" role="button" download>
-                                                    이미지 다운로드:<i class="far fa-file-image"></i>{{ post.get_file_name }}
-                                                </a>
-                                            {% else %}
-                                                <a href="{{ post.file_upload.url }}" class="col-lg-auto" style="width:auto; background-color: silver;" role="button" download>
-                                                    첨부파일 다운로드:
-                                                    {% if post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
-                                                        <i class="far fa-file-excel"></i>
-                                                    {% elif post.get_file_ext == 'txt' %}
-                                                        <i class="far fa-file-alt"></i>
-                                                    {% elif post.get_file_ext == 'pdf' %}
-                                                        <i class="far fa-file-pdf"></i>
-                                                    {% elif post.get_file_ext == 'zip' or post.get_file_ext == '7z' %}
-                                                        <i class="far fa-file-archive"></i>
-                                                    {% else %}
-                                                        <i class="fas fa-file-alt"></i>
-                                                    {% endif %}
-                                                    {{ post.get_file_name }}
-                                                </a>
-                                            {% endif %}
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="col-xs-12"><button>목록</button></div>
-                                </div>
-                            </div>
-
+        <div class="row" style="text-align: center; background-color: silver;">
+            <div class="col-lg-2">No.{{ post.pk }}</div>
+            <div class="col-lg-8">{{ post.title }}</div>
+            <div class="col-lg-2">{{ post.created_at }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <p>{{ post.content }}</p>
+                {% if post.file_upload %}
+                    {% if post.get_file_ext == 'jpg' or post.get_file_ext == 'jpeg' or post.get_file_ext == 'png' or post.get_file_ext == 'jfif' %}
+                        <img src="{{ post.file_upload.url }}" alt="{{ post.get_file_name }}">
+                        <br/>
+                        <a href="{{ post.file_upload.url }}" class="col-lg-auto" style="width:auto; background-color: silver;" role="button" download>
+                            이미지 다운로드:<i class="far fa-file-image"></i>{{ post.get_file_name }}
+                        </a>
+                    {% else %}
+                        <a href="{{ post.file_upload.url }}" class="col-lg-auto" style="width:auto; background-color: silver;" role="button" download>
+                            첨부파일 다운로드:
+                            {% if post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
+                                <i class="far fa-file-excel"></i>
+                            {% elif post.get_file_ext == 'txt' %}
+                                <i class="far fa-file-alt"></i>
+                            {% elif post.get_file_ext == 'pdf' %}
+                                <i class="far fa-file-pdf"></i>
+                            {% elif post.get_file_ext == 'zip' or post.get_file_ext == '7z' %}
+                                <i class="far fa-file-archive"></i>
+                            {% else %}
+                                <i class="fas fa-file-alt"></i>
+                            {% endif %}
+                            {{ post.get_file_name }}
+                        </a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            <div class="col-xs-12"><button>목록</button></div>
+        </div>
+    </div>
 {% endblock %}
 {% block notice_tab %}
-
 {% endblock %}
