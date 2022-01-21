@@ -16,6 +16,7 @@
     <title>밀리의 서재-기업 도서관</title>
 </head>
 <body style="margin: 10px;">
+{#header#}
 <div class="container">
     <div style="margin: 10px;">
         <div class="row">
@@ -40,84 +41,65 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="statistics-tab" data-toggle="tab" href="#statistics" role="tab" aria-controls="statistics" aria-selected="true">기업 통계</a>
-                        <a class="nav-item nav-link" id="mypage-tab" data-toggle="tab" href="#mypage" role="tab" aria-controls="mypage" aria-selected="false">마이페이지</a>
-                        <a class="nav-item nav-link" id="boards-tab" data-toggle="tab" href="#boards" role="tab" aria-controls="boards" aria-selected="false">게시판</a>
-                        <a class="nav-item nav-link" id="booklearning-tab" data-toggle="tab" href="#booklearning" role="tab" aria-controls="booklearning" aria-selected="false">북러닝</a>
-                    </div>
-                </nav>
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="statistics" role="presentation" aria-labelledby="statistics-tab">
-
-                    </div>
-                    <div class="tab-pane fade" id="mypage" role="presentation" aria-labelledby="mypage-tab">
-
-                    </div>
-                    <div class="tab-pane fade" id="boards" role="tabpanel" aria-labelledby="boards-tab">
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="sabo-tab" data-toggle="tab" href="#sabo" role="tab" aria-controls="sabo" aria-selected="true">사보 게시판</a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="notice-tab" data-toggle="tab" href="#notice" role="tab" aria-controls="notice" aria-selected="false">공지사항</a>
-                            </li>
-                            <li class="nav-item ml-auto">
-                                <button><a href="#update">수정</a></button>
-                                <button><a href="#delete">삭제</a></button>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="myTab-Content">
-                            <div class="tab-pane fade show active" id="sabo" role="tabpanel" aria-labelledby="sabo-tab">
-                                <div class="container-fluid">
-                                    <div class="row" style="text-align: center; background-color: silver;">
-                                        <div class="col-lg-2">No.{{ post.pk }}</div>
-                                        <div class="col-lg-8">{{ post.title }}</div>
-                                        <div class="col-lg-2">{{ post.created_at }}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <p>{{ post.content }}</p>
-                                            {% if post.image_upload %}
-                                            <img src="{{ post.image_upload.url }}">
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                    <div class="row">
+                    <ul class="nav nav-tabs" id="boardTap" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="sabo-tab" data-toggle="tab" href="#sabo" role="tab" aria-controls="sabo" aria-selected="true">사보 게시판</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="notice-tab" data-toggle="tab" href="#notice" role="tab" aria-controls="notice" aria-selected="false">공지사항</a>
+                        </li>
+                        <li class="nav-item ml-auto">
+                            <button><a href="#write">글 쓰기</a></button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="boardTabContent">
+                        <div class="tab-pane fade show active" id="sabo" role="tabpanel"
+                             aria-labelledby="sabo-tab">
+                            <div class="container-fluid">
+                                <div class="row" style="text-align: center; background-color: silver;">
+                                    <div class="col-lg-2">No.{{ post.pk }}</div>
+                                    <div class="col-lg-8">{{ post.title }}</div>
+                                    <div class="col-lg-2">{{ post.created_at }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p>{{ post.content }}</p>
                                         {% if post.file_upload %}
-                                            <a href="{{ post.file_upload.url }}" class="col-lg-auto" style="width:auto; background-color: silver;" role="button" download>
-                                                첨부파일 다운로드:
-                                                {% if post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
-                                                    <i class="far fa-file-excel"></i>
+                                            {% if post.get_file_ext == 'jpg' or post.get_file_ext == 'jpeg' or post.get_file_ext == 'png' or post.get_file_ext == 'jfif' %}
+                                                <img src="{{ post.file_upload.url }}">
+                                                <br/>
+                                                <a href="{{ post.file_upload.url }}" class="col-lg-auto" style="width:auto; background-color: silver;" role="button" download>
+                                                    이미지 다운로드:<i class="far fa-file-image"></i>{{ post.get_file_name }}
+                                                </a>
+                                            {% else %}
+                                                <a href="{{ post.file_upload.url }}" class="col-lg-auto" style="width:auto; background-color: silver;" role="button" download>
+                                                    첨부파일 다운로드:
+                                                    {% if post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
+                                                        <i class="far fa-file-excel"></i>
                                                     {% elif post.get_file_ext == 'txt' %}
-                                                    <i class="far fa-file-alt"></i>
+                                                        <i class="far fa-file-alt"></i>
                                                     {% elif post.get_file_ext == 'pdf' %}
-                                                    <i class="far fa-file-pdf"></i>
-                                                    {% elif post.get_file_ext == 'zip' or '7z' %}
-                                                    <i class="far fa-file-archive"></i>
-                                                    {% elif post.get_file_ext == 'jpg' or 'jpeg' or 'png' or 'jfif' %}
-                                                    <i class="far fa-file-image"></i>
+                                                        <i class="far fa-file-pdf"></i>
+                                                    {% elif post.get_file_ext == 'zip' or post.get_file_ext == '7z' %}
+                                                        <i class="far fa-file-archive"></i>
                                                     {% else %}
-                                                    <i class="fas fa-file-alt"></i>
+                                                        <i class="fas fa-file-alt"></i>
                                                     {% endif %}
-                                                {{ post.get_file_ext }}
-                                                {{ post.get_file_name }}
-                                            </a>
+                                                    {{ post.get_file_name }}
+                                                </a>
+                                            {% endif %}
                                         {% endif %}
                                     </div>
-                                    <div class="row">
-                                        <div class="col-xs-12"><button>목록</button></div>
-                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-xs-12"><button>목록</button></div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="notice" role="tabpanel" aria-labelledby="notice-tab">
                                 공지사항
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="booklearning" role="presentation" aria-labelledby="booklearning-tab">
-
                     </div>
                 </div>
             </div>
