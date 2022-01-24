@@ -1,6 +1,7 @@
 from django.db import models
 import os
 
+
 class Post(models.Model):
     # 게시글 제목
     title = models.CharField(max_length=50)
@@ -20,8 +21,8 @@ class Post(models.Model):
     # 작성자
     # author
 
-    # 카테고리
-    # category
+    # 고정글
+    # fixed_post
 
     # [pk]title
     def __str__(self):
