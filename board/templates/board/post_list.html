@@ -38,29 +38,24 @@
             <th scope="col">카테고리</th>
             <th scope="col">제목</th>
             <th scope="col">등록일</th>
-            <th scope="col">Hnadle</th>
+            <th scope="col">Handle</th>
         </tr>
         </thead>
         <tbody>
+        {% for n in notice_list %}
         <tr>
-            <th scope="row">15</th>
-            <td>EVENT</td>
-            <td>2021 연말 다독왕 시상 결과 발표</td>
-            <td>2021-12-30</td>
-            <td>수정 삭제</td>
+            <th scope="row">{{ n.pk }}</th>
+            <td><a href="{{ n.get_absolute_url }}">{{ n.category }}</a></td>
+            <td>{{ n.title }}</td>
+            <td>{{ n.created_at }}</td>
+            <td>
+                 <div class="d-grid gap-2 d-md-block">
+                        <button class="btn btn-primary" type="button">수정</button>
+                        <button class="btn btn-primary" type="button">삭제</button>
+                 </div>
+            </td>
         </tr>
-        <th scope="row">14</th>
-        <td>공지</td>
-        <td>1월에 꼭 읽어야 할 도서를 추천해주세요</td>
-        <td>2021-12-28</td>
-        <td>수정 삭제</td>
-        <tr>
-            <th scope="row">13</th>
-            <td>도서추천</td>
-            <td>2022년 1월 사내 추천 도서</td>
-            <td>2021-12-28</td>
-            <td>수정 삭제</td>
-        </tr>
+        {% endfor %}
         </tbody>
     </table>
 {#    페이지네이션 추가#}

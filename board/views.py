@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import Post
+from .models import Post, Notice
 
 
 class PostList(ListView):
@@ -10,6 +10,16 @@ class PostList(ListView):
 
 class PostDetail(DetailView):
     model = Post
+
+
+class NoticeList(ListView):
+    model = Notice
+    ordering = '-pk'
+
+
+class NoticeDetail(DetailView):
+    model = Notice
+
 
 
 # def index(request):
