@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 import os
 
 
@@ -30,7 +31,7 @@ class Post(models.Model):
     pin = models.ForeignKey(Postinstance, null=False, default=False, on_delete=models.CASCADE, related_name='+',
                             help_text='고정글로 등록하고 싶으시다면 True를 선택해주세요')
     # 글 내용
-    content = models.TextField()
+    content = RichTextField(blank=True, null=True)
     # 작성일(작성된 날짜 자동 등록)
     created_at = models.DateTimeField(auto_now_add=True)
     # 수정 시 수정된 날짜 새로 생성
