@@ -3,6 +3,7 @@
     <h1>Create new_post</h1>
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
         <table>
+            {{ form.media }}
             {{ form }}
         </table>
         <button type="submit" class="btn btn-primary float-none">등록</button>

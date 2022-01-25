@@ -10,7 +10,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <p>{{ post.content }}</p>
+                <p>{{ post.content | safe}}</p>
                 {% if post.file_upload %}
                     {% if post.get_file_ext == 'jpg' or post.get_file_ext == 'jpeg' or post.get_file_ext == 'png' or post.get_file_ext == 'jfif' %}
                         <img src="{{ post.file_upload.url }}" alt="{{ post.get_file_name }}">
