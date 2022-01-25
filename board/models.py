@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-import uuid
 import os
 
 
@@ -27,8 +26,9 @@ class Postinstance(models.Model):
 class Post(models.Model):
     # 게시글 제목
     title = models.CharField(max_length=50)
-    #고정글
-    pin = models.ForeignKey(Postinstance, null=False, default=False, on_delete=models.CASCADE, related_name='+', help_text='고정글로 등록하고 싶으시다면 True를 선택해주세요')
+    # 고정글
+    pin = models.ForeignKey(Postinstance, null=False, default=False, on_delete=models.CASCADE, related_name='+',
+                            help_text='고정글로 등록하고 싶으시다면 True를 선택해주세요')
     # 글 내용
     content = models.TextField()
     # 작성일(작성된 날짜 자동 등록)
