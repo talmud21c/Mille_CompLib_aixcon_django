@@ -10,7 +10,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <p>{{ notice.content }}</p>
+                <p>{{ notice.content | safe }}</p>
                 {% if notice.file_upload %}
                     {% if notice.get_file_ext == 'jpg' or notice.get_file_ext == 'jpeg' or notice.get_file_ext == 'png' or notice.get_file_ext == 'jfif' %}
                         <img src="{{ notice.file_upload.url }}" alt="{{ notice.get_file_name }}">

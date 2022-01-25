@@ -73,7 +73,7 @@ class Notice(models.Model):
     # 카테고리
     category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
     # 글 내용
-    content = models.TextField()
+    content = RichTextField(blank=True, null=True)
     # 작성일
     created_at = models.DateTimeField(auto_now_add=True)
     # 수정시 수정된 날짜 업데이트
