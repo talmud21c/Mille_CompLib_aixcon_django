@@ -4,32 +4,12 @@ from ckeditor.fields import RichTextField
 import os
 
 
-# 사보게시판 고정글
-class Postinstance(models.Model):
-    POST_STATUS = (
-        (0, 'Nonfixed'),
-        (1, 'Fixed'),
-    )
-
-    status = models.BooleanField(choices=POST_STATUS, blank=False, default='0')
-
-    class Meta:
-        ordering = ['status']
-
-    def get_status(self):
-        return self.get_status_display()
-
-    def __str__(self):
-        return f'[{self.status}]'
-
-
 # 사보 게시판
 class Post(models.Model):
     # 게시글 제목
     title = models.CharField(max_length=50)
     # 고정글
-    pin = models.ForeignKey(Postinstance, null=False, default=False, on_delete=models.CASCADE, related_name='+',
-                            help_text='고정글로 등록하고 싶으시다면 True를 선택해주세요')
+    pin = models.BooleanField(verbose_name='상단고정', default=False)
     # 글 내용
     content = RichTextField(blank=True, null=True)
     # 작성일(작성된 날짜 자동 등록)
