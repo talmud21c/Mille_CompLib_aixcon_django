@@ -1,6 +1,5 @@
 {% extends 'board/base.html' %}
 {% block sabo_tab %}
-    <h1>Create new_post</h1>
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
         <table>
             {{ form.media }}

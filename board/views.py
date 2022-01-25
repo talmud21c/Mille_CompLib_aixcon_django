@@ -10,7 +10,7 @@ class PostList(ListView):
     context_object_name = 'post_list'
     ordering = '-pk'
 
-    # pa
+    # 페이지네이션
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         paginator = context['paginator']
@@ -38,6 +38,7 @@ class PostDetail(DetailView):
 class PostCreate(CreateView):
     model = Post
     fields = ['title', 'pin', 'content', 'file_upload']
+
 
 class NoticeList(ListView):
     model = Notice
