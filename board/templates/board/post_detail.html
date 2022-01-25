@@ -45,47 +45,47 @@
     </div>
 {% endblock %}
 
-{% block notice_tab %}
-        <div class="container-fluid">
-        <div class="row" style="text-align: center; background-color: silver;">
-            <div class="col-lg-2">No.{{ notice.pk }}</div>
-            <div class="col-lg-2">{{ notice.category }}</div>
-            <div class="col-lg-6">{{ notice.title }}</div>
-            <div class="col-lg-2">{{ notice.created_at }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <p>{{ notice.content }}</p>
-                {% if notice.file_upload %}
-                    {% if notice.get_file_ext == 'jpg' or notice.get_file_ext == 'jpeg' or notice.get_file_ext == 'png' or notice.get_file_ext == 'jfif' %}
-                        <img src="{{ notice.file_upload.url }}" alt="{{ notice.get_file_name }}">
-                        <br/>
-                        <span style="background-color: silver;">이미지 다운로드:</span>
-                        <a href="{{ notice.file_upload.url }}" class="col-lg-auto" style="width:auto; background-color: silver;" role="button" download>
-                            <i class="far fa-file-image"></i>{{ notice.get_file_name }}
-                        </a>
-                    {% else %}
-                        <a href="{{ notice.file_upload.url }}" class="col-lg-auto" style="width:auto; background-color: silver;" role="button" download>
-                            첨부파일 다운로드:
-                            {% if notice.get_file_ext == 'xlsx' or notice.get_file_ext == 'xls' %}
-                                <i class="far fa-file-excel"></i>
-                            {% elif notice.get_file_ext == 'txt' %}
-                                <i class="far fa-file-alt"></i>
-                            {% elif notice.get_file_ext == 'pdf' %}
-                                <i class="far fa-file-pdf"></i>
-                            {% elif notice.get_file_ext == 'zip' or notice.get_file_ext == '7z' %}
-                                <i class="far fa-file-archive"></i>
-                            {% else %}
-                                <i class="fas fa-file-alt"></i>
-                            {% endif %}
-                            {{ notice.get_file_name }}
-                        </a>
-                    {% endif %}
-                {% endif %}
-            </div>
-        </div>
-        <div>
-            <div class="col-xs-12"><a href="/"><button>목록</button></a></div>
-        </div>
-    </div>
-{% endblock %}
+{#{% block notice_tab %}#}
+{#        <div class="container-fluid">#}
+{#        <div class="row" style="text-align: center; background-color: silver;">#}
+{#            <div class="col-lg-2">No.{{ notice.pk }}</div>#}
+{#            <div class="col-lg-2">{{ notice.category }}</div>#}
+{#            <div class="col-lg-6">{{ notice.title }}</div>#}
+{#            <div class="col-lg-2">{{ notice.created_at }}</div>#}
+{#        </div>#}
+{#        <div class="row">#}
+{#            <div class="col-xs-12">#}
+{#                <p>{{ notice.content }}</p>#}
+{#                {% if notice.file_upload %}#}
+{#                    {% if notice.get_file_ext == 'jpg' or notice.get_file_ext == 'jpeg' or notice.get_file_ext == 'png' or notice.get_file_ext == 'jfif' %}#}
+{#                        <img src="{{ notice.file_upload.url }}" alt="{{ notice.get_file_name }}">#}
+{#                        <br/>#}
+{#                        <span style="background-color: silver;">이미지 다운로드:</span>#}
+{#                        <a href="{{ notice.file_upload.url }}" class="col-lg-auto" style="width:auto; background-color: silver;" role="button" download>#}
+{#                            <i class="far fa-file-image"></i>{{ notice.get_file_name }}#}
+{#                        </a>#}
+{#                    {% else %}#}
+{#                        <a href="{{ notice.file_upload.url }}" class="col-lg-auto" style="width:auto; background-color: silver;" role="button" download>#}
+{#                            첨부파일 다운로드:#}
+{#                            {% if notice.get_file_ext == 'xlsx' or notice.get_file_ext == 'xls' %}#}
+{#                                <i class="far fa-file-excel"></i>#}
+{#                            {% elif notice.get_file_ext == 'txt' %}#}
+{#                                <i class="far fa-file-alt"></i>#}
+{#                            {% elif notice.get_file_ext == 'pdf' %}#}
+{#                                <i class="far fa-file-pdf"></i>#}
+{#                            {% elif notice.get_file_ext == 'zip' or notice.get_file_ext == '7z' %}#}
+{#                                <i class="far fa-file-archive"></i>#}
+{#                            {% else %}#}
+{#                                <i class="fas fa-file-alt"></i>#}
+{#                            {% endif %}#}
+{#                            {{ notice.get_file_name }}#}
+{#                        </a>#}
+{#                    {% endif %}#}
+{#                {% endif %}#}
+{#            </div>#}
+{#        </div>#}
+{#        <div>#}
+{#            <div class="col-xs-12"><a href="/"><button>목록</button></a></div>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
