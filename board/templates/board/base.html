@@ -51,14 +51,8 @@
                             <div><a class="nav-link" id="notice-tab" data-toggle="tab" href="#notice" role="tab" aria-controls="notice" aria-selected="true">공지사항</a></div>
                             <a href="/notice/">공지사항</a>
                         </li>
-                        <li class="nav-item ml-auto">
-                            <button><a href="#setFixedPost">고정글 설정</a></button>
-                            <button><a href="new_post/">글 쓰기</a></button>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="boardTabContent">
-                        <div class="tab-pane fade show active" id="sabo" role="tabpanel" aria-labelledby="sabo-tab">
-                            {% block sabo_tab %}
+                        {% block sabo_tab %}
+
                             {% endblock %}
                         </div>
                         <div class="tab-pane fade" id="notice" role="tabpanel" aria-labelledby="notice-tab">

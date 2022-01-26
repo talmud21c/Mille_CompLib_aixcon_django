@@ -2,6 +2,13 @@
 <!DOCTYPE html>
 {% load static %}
 {% block sabo_tab %}
+     <li class="nav-item ml-auto">
+        <a href=""><button class="btn btn-secondary">수정</button></a>
+        <a href=""><button class="btn btn-danger">삭제</button></a>
+    </li>
+    </ul>
+    <div class="tab-content" id="boardTabContent">
+    <div class="tab-pane fade show active" id="sabo" role="tabpanel" aria-labelledby="sabo-tab">
     <div class="container-fluid">
         <div class="row" style="text-align: center; background-color: silver;">
             <div class="col-lg-2">No.{{ post.pk }}</div>

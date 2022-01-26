@@ -17,7 +17,7 @@ class Post(models.Model):
     # 수정 시 수정된 날짜 새로 생성
     updated_at = models.DateTimeField(auto_now=True)
     # 파일 업로드
-    file_upload = models.FileField(upload_to='board/files/%Y/%m/%d/', blank=True, verbose_name='첨부파일 선택')
+    file_upload = models.FileField(upload_to='board/files/%Y/%m/%d/', blank=True, verbose_name='파일')
     # 작성자
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, verbose_name='작성자')
 
@@ -50,6 +50,8 @@ class Category(models.Model):
 class Notice(models.Model):
     # 제목
     title = models.CharField(max_length=50)
+    # 고정글
+
     # 카테고리
     category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
     # 글 내용
@@ -62,7 +64,6 @@ class Notice(models.Model):
     file_upload = models.FileField(upload_to='board/files/%Y/%m/%d/', blank=True)
     # 작성자
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-    # 고정글
 
     def __str__(self):
         return f'[{self.pk}] [{self.category}] {self.title} - {self.author}'

@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Post, Notice
 
@@ -10,9 +9,9 @@ class PostList(ListView):
     context_object_name = 'post_list'
     ordering = '-pk'
 
-    # 페이지네이션
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # 페이지네이션
         paginator = context['paginator']
         page_numbers_range = 5
         max_index = len(paginator.page_range)
@@ -28,6 +27,10 @@ class PostList(ListView):
         page_range = paginator.page_range[start_index:end_index]
         context['page_range'] = page_range
 
+        # 상단고정
+        post_fixed = Post.objects.filter(pin=True).order_by('-pk')
+        context['post_fixed'] = post_fixed
+
         return context
 
 
@@ -37,7 +40,8 @@ class PostDetail(DetailView):
 
 class PostCreate(CreateView):
     model = Post
-    fields = ['title', 'pin', 'content', 'file_upload']
+    template_name = 'board/post_write.html'
+    fields = ['title', 'file_upload', 'pin', 'content']
 
 
 class NoticeList(ListView):
