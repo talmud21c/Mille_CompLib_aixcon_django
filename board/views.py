@@ -1,4 +1,8 @@
-from django.views.generic import ListView, DetailView, CreateView
+from django.contrib import messages
+from django.shortcuts import redirect, render, get_object_or_404
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+
+import board.views
 from .models import Post, Notice
 
 
@@ -39,6 +43,12 @@ class PostDetail(DetailView):
 
 
 class PostCreate(CreateView):
+    model = Post
+    template_name = 'board/post_write.html'
+    fields = ['title', 'file_upload', 'pin', 'content']
+
+
+class PostEdit(UpdateView):
     model = Post
     template_name = 'board/post_write.html'
     fields = ['title', 'file_upload', 'pin', 'content']

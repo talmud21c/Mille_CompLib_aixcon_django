@@ -1,34 +1,13 @@
 {% extends 'board/base.html' %}
 {% block sabo_tab %}
-{#    <form acction="" method="POST">#}
-{#    {% csrf_token %}#}
-{#    <div class="card">#}
-{#        <div class="card-header">#}
-{#            <span><b>제목</b>{{ form.title }}</span>#}
-{#        </div>#}
-{#        <div>#}
-{#            <span><b>파일</b>{{ form.file_upload }}</span>#}
-{#        </div>#}
-{#        <div>#}
-{#            <span><b>고정글</b>{{ form.pin }}</span>#}
-{#        </div>#}
-{#        <div>#}
-{#            <span><b>내용</b>{{ form.content }}</span>#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{#    <div class="text-center">#}
-{#        <button type="submit" id="write" class="btn btn-primary">작성하기</button>#}
-{#    </div>#}
-{#    </form>#}
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
         <table>
             {{ form.media }}
             {{ form }}
         </table>
         <div class="">
-        <button type="submit" class="btn btn-primary float-none">등록</button>
-        <button type="" class="btn btn-primary float-none">취소</button>
+            <button type="submit" class="btn btn-primary float-none">등록</button>
+            <button type="" class="btn btn-primary float-none" data-target="">취소</button>
         </div>
     </form>
 {% endblock %}
