@@ -1,13 +1,13 @@
 {% extends 'board/base.html' %}
 {% block sabo_tab %}
-    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
         <table>
             {{ form.media }}
             {{ form }}
         </table>
-        <div class="">
+
             <button type="submit" class="btn btn-primary float-none">등록</button>
-            <button type="" class="btn btn-primary float-none" data-target="">취소</button>
-        </div>
+            <a href="{% url 'board:post_list' %}"><button type="button" class="btn btn-primary float-none" data-target="">취소</button></a?
     </form>
 {% endblock %}
