@@ -1,6 +1,12 @@
 {% extends 'board/base.html' %}
 
 {% block sabo_tab %}
+    <div class="ml-auto">
+            <a href="{% url 'board:post_setFix' %}"><button class="btn btn-secondary">고정글 설정</button></a>
+            <a href="{% url 'board:post_write' %}"><button class="btn btn-secondary">글쓰기</button></a>
+        </div>
+    </div>
+</div>
     <table class="table table-hover" style="text-align: center;">
         <thead>
         <tr>
@@ -13,7 +19,7 @@
         {% else %}
             {% if post_fixed %}
                 {% for pin in post_fixed %}
-                    <tr>
+                    <tr class="table-warning table-hover">
                         <td><i class="fas fa-bullhorn"></i></td>
                         <td><a href="{{ pin.get_absolute_url }}">{{ pin.title }}</a></td>
                         <td>{{ pin.created_at|date:'Y-m-d' }}</td>
@@ -42,36 +48,43 @@
     </table>
     {#    페이지 네이션#}
     {% if is_paginated %}
-        <div style="text-align: center">
+        <nav aria-label="Page navigation example">
             <ul class="pagination">
                 {% if page_obj.has_previous %}
                     <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
-                           tabindex="-1">이전</a>
-                    </li>
-                {% else %}
-                    <li class="page-item invisible">
-                        <a class="page-link" href="#" tabindex="-1">이전</a>
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
                     </li>
                 {% endif %}
-
                 {% for page in page_range %}
                     <li class="page-item {% if page == page_obj.number %} activate {% endif %}">
                         <a class="page-link" href="?page={{ page }}">{{ page }}</a>
                     </li>
                 {% endfor %}
-
                 {% if page_obj.has_next %}
                     <li class="page-item">
-                        <a class="page-link"
-                           href="?page={{ page_obj.next_page_number }}">다음</a>
-                    </li>
-                {% else %}
-                    <li class="page-item invisible">
-                        <a class="page-link" href="#">다음</a>
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
                     </li>
                 {% endif %}
             </ul>
-        </div>
+        </nav>
     {% endif %}
+{#    {% if is_paginated %}#}
+{#        <div class="pagination">#}
+{#            <span class="page-links">#}
+{#                {% if page_obj.has_previous %}#}
+{#                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>#}
+{#                {% endif %}#}
+{#                <span class="page-current">#}
+{#                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.#}
+{#                </span>#}
+{#                {% if page_obj.has_next %}#}
+{#                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>#}
+{#                {% endif %}#}
+{#            </span>#}
+{#        </div>#}
+{#    {% endif %}#}
 {% endblock %}

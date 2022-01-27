@@ -1,14 +1,34 @@
 {% extends 'board/base.html' %}
 {% block notice_tab %}
+    <div class="ml-auto">
+            <a href=""><button class="btn btn-secondary">고정글 설정</button></a>
+            <a href="{% url 'board:notice_write' %}"><button class="btn btn-secondary">글쓰기</button></a>
+        </div>
+    </div>
+</div>
     <table class="table table-hover" style="text-align: center;">
         <thead>
         <tr>
-            <th scope="col">번호</th>
-            <th scope="col">카테고리</th>
-            <th scope="col">제목</th>
-            <th scope="col">등록일</th>
-            <th scope="col">Handle</th>
+            <th scope="col-1">번호</th>
+            <th scope="col-2">카테고리</th>
+            <th scope="col-5">제목</th>
+            <th scope="col-2">등록일</th>
+            <th scope="col-2">Handle</th>
         </tr>
+        {% if n %}
+        {% else %}
+            {% if notice_fixed %}
+                {% for pin in notice_fixed %}
+                    <tr class="table-warning table-hover">
+                        <td><i class="fas fa-bullhorn"></i></td>
+                        <td>{{ pin.category }}</td>
+                        <td><a href="{{ pin.get_absolute_url }}">{{ pin.title }}</a></td>
+                        <td>{{ pin.created_at|date:'Y-m-d' }}</td>
+                        <td></td>
+                    </tr>
+                {% endfor%}
+            {% endif %}
+        {% endif %}
         </thead>
         <tbody>
         {% for n in notice_list %}
@@ -16,11 +36,11 @@
                 <th scope="row">{{ n.pk }}</th>
                 <td>{{ n.category }}</td>
                 <td><a href="{{ n.get_absolute_url }}">{{ n.title }}</a></td>
-                <td>{{ n.created_at }}</td>
+                <td>{{ n.created_at|date:'Y-m-d' }}</td>
                 <td>
                     <div class="d-grid gap-2 d-md-block">
-                        <button class="btn btn-primary" type="button">수정</button>
-                        <button class="btn btn-primary" type="button">삭제</button>
+                        <a href="/notice/{{ n.pk }}/edit/"><button class="btn btn-secondary" type="button">수정</button></a>
+                        <a href="/notice/{{ n.pk }}/delete/"><button class="btn btn-danger" type="button">삭제</button></a>
                     </div>
                 </td>
             </tr>

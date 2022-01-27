@@ -12,22 +12,6 @@ class PostList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # 페이지네이션
-        paginator = context['paginator']
-        page_numbers_range = 5
-        max_index = len(paginator.page_range)
-
-        page = self.request.GET.get('page')
-        current_page = int(page) if page else 1
-
-        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
-        end_index = start_index + page_numbers_range
-        if end_index >= max_index:
-            end_index = max_index
-
-        page_range = paginator.page_range[start_index:end_index]
-        context['page_range'] = page_range
-
         # 상단고정
         post_fixed = Post.objects.filter(pin=True).order_by('-pk')
         context['post_fixed'] = post_fixed
@@ -56,10 +40,53 @@ class PostDelete(DeleteView):
     success_url = reverse_lazy('board:post_list')
 
 
+class PostSetFix(ListView):
+    model = Post
+    paginate_by = 5
+    template_name = 'board/post_set_fix.html'
+    ordering = '-pk'
+    fields = ['pin', 'pk', 'title', 'created_at']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # 상단고정
+        post_fixed = Post.objects.filter(pin=True).order_by('-pk')
+        context['post_fixed'] = post_fixed
+
+        return context
+
+
 class NoticeList(ListView):
     model = Notice
+    template_name = 'board/notice_list.html'
+    context_object_name = 'notice_list'
     ordering = '-pk'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # 상단고정
+        notice_fixed = Notice.objects.filter(pin=True).order_by('-pk')
+        context['notice_fixed'] = notice_fixed
+
+        return context
 
 
 class NoticeDetail(DetailView):
     model = Notice
+
+
+class NoticeCreate(CreateView):
+    model = Notice
+    template_name = 'board/notice_write.html'
+    fields = ['title', 'category', 'file_upload', 'pin', 'content']
+
+
+class NoticeEdit(UpdateView):
+    model = Notice
+    template_name = 'board/notice_write.html'
+    fields = ['title', 'category', 'file_upload', 'pin', 'content']
+
+
+class NoticeDelete(DeleteView):
+    model = Notice
+    success_url = reverse_lazy('board:notice_list')

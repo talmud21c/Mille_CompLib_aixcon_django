@@ -51,7 +51,7 @@ class Notice(models.Model):
     # 제목
     title = models.CharField(max_length=50)
     # 고정글
-
+    pin = models.BooleanField(verbose_name='고정글', default=False)
     # 카테고리
     category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
     # 글 내용
@@ -66,7 +66,7 @@ class Notice(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return f'[{self.pk}] [{self.category}] {self.title} - {self.author}'
+        return f'[{self.pk}] [{self.pin}] [{self.category}] {self.title} - {self.author}'
 
     def get_absolute_url(self):
         return f'/notice/{self.pk}/'

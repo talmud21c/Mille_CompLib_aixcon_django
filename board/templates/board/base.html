@@ -17,7 +17,7 @@
     <title>밀리의 서재-기업 도서관</title>
 </head>
 
-<body>
+<body style="margin: 10%">
 <div class="container">
     <div style="margin: 10px;">
         <div class="row">
@@ -30,7 +30,7 @@
                             Aixcon
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">로그아웃</a>
+                            <a class="dropdown-item" href="">로그아웃</a>
                         </div>
                     </div>
                 </div>
@@ -38,30 +38,20 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-auto">
+            <a href="{% url 'board:post_list' %}"><button class="btn btn-warning">사보게시판</button></a>
+            <a href="{% url 'board:notice_list' %}"><button class="btn btn-warning">공지사항</button></a>
+        </div>
 
-<nav>
-    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <a class="nav-item nav-link active" id="post_list-tab" data-toggle="tab" href="#post_list" role="tab" aria-controls="nav-home" aria-selected="true">사보게시판</a>
-        <a class="nav-item nav-link" id="notice-tab" data-toggle="tab" href="#notice" role="tab" aria-controls="nav-notice" aria-selected="false">공지사항</a>
-    </div>
-    {% if 'post_list.html' %}
-        <div>
-        <a href=""><button class="btn btn-secondary">고정글 설정</button></a>
-        <a href="{% url 'board:post_write' %}"><button class="btn btn-secondary">글 쓰기</button></a>
-    </div>
-    {% endif %}
-</nav>
-<div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="post_list" role="tabpanel" aria-labelledby="post_list-tab">
-        {% block sabo_tab %}
+{% block sabo_tab %}
 
-        {% endblock %}
-    </div>
-    <div class="tab-pane fade" id="notice" role="tabpanel" aria-labelledby="notice-tab">
-        {% block notice_tab %}
+{% endblock %}
 
-        {% endblock %}
-    </div>
-</div>
+{% block notice_tab %}
+
+{% endblock %}
+
 </body>
 </html>
