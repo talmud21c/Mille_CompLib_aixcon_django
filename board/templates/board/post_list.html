@@ -1,87 +1,77 @@
 {% extends 'board/base.html' %}
 
 {% block sabo_tab %}
-    <li class="nav-item ml-auto">
-        <a href="#setFixedPost"><button class="btn btn-secondary">고정글 설정</button></a>
-        <a href="{% url 'board:post_write' %}"><button class="btn btn-secondary">글 쓰기</button></a>
-    </li>
-    </ul>
-    <div class="tab-content" id="boardTabContent">
-        <div class="tab-pane fade show active" id="sabo" role="tabpanel" aria-labelledby="sabo-tab">
-
-            <table class="table table-hover" style="text-align: center;">
-                <thead>
-                <tr>
-                    <th scope="col">번호</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">등록일</th>
-                    <th scope="col">Handle</th>
-                </tr>
-                {% if p %}
-                {% else %}
-                    {% if post_fixed %}
-                        {% for pin in post_fixed %}
-                            <tr>
-                                <td><i class="fas fa-bullhorn"></i></td>
-                                <td><a href="{{ pin.get_absolute_url }}">{{ pin.title }}</a></td>
-                                <td>{{ pin.created_at|date:'Y-m-d' }}</td>
-                                <td></td>
-                            </tr>
-                        {% endfor%}
-                    {% endif %}
-                {% endif %}
-                </thead>
-                <tbody>
-                {# 게시글 #}
-                {% for p in post_list %}
+    <table class="table table-hover" style="text-align: center;">
+        <thead>
+        <tr>
+            <th scope="col">번호</th>
+            <th scope="col">제목</th>
+            <th scope="col">등록일</th>
+            <th scope="col">Handle</th>
+        </tr>
+        {% if p %}
+        {% else %}
+            {% if post_fixed %}
+                {% for pin in post_fixed %}
                     <tr>
-                        <th scope="row">{{ p.pk }}</th>
-                        <td><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></td>
-                        <td>{{ p.created_at|date:'Y-m-d' }}</td>
-                        <td>
-                            <div class="d-grid gap-2 d-md-block">
-                                <a href="/board/{{ p.pk }}/edit"><button class="btn btn-secondary" type="button">수정</button></a>
-                                <button class="btn btn-danger" type="button">삭제</button>
-                            </div>
-                        </td>
+                        <td><i class="fas fa-bullhorn"></i></td>
+                        <td><a href="{{ pin.get_absolute_url }}">{{ pin.title }}</a></td>
+                        <td>{{ pin.created_at|date:'Y-m-d' }}</td>
+                        <td></td>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            {#    페이지 네이션#}
-            {% if is_paginated %}
-                <div style="text-align: center">
-                    <ul class="pagination">
-                        {% if page_obj.has_previous %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
-                                   tabindex="-1">이전</a>
-                            </li>
-                        {% else %}
-                            <li class="page-item invisible">
-                                <a class="page-link" href="#" tabindex="-1">이전</a>
-                            </li>
-                        {% endif %}
-
-                        {% for page in page_range %}
-                            <li class="page-item {% if page == page_obj.number %} activate {% endif %}">
-                                <a class="page-link" href="?page={{ page }}">{{ page }}</a>
-                            </li>
-                        {% endfor %}
-
-                        {% if page_obj.has_next %}
-                            <li class="page-item">
-                                <a class="page-link"
-                                   href="?page={{ page_obj.next_page_number }}">다음</a>
-                            </li>
-                        {% else %}
-                            <li class="page-item invisible">
-                                <a class="page-link" href="#">다음</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </div>
+                {% endfor%}
             {% endif %}
+        {% endif %}
+        </thead>
+        <tbody>
+        {# 게시글 #}
+        {% for p in post_list %}
+            <tr>
+                <th scope="row">{{ p.pk }}</th>
+                <td><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></td>
+                <td>{{ p.created_at|date:'Y-m-d' }}</td>
+                <td>
+                    <div class="d-grid gap-2 d-md-block">
+                        <a href="/board/{{ p.pk }}/edit"><button class="btn btn-secondary" type="button">수정</button></a>
+                        <a href="/board/{{ p.pk }}/delete"><button class="btn btn-danger" type="button">삭제</button></a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {#    페이지 네이션#}
+    {% if is_paginated %}
+        <div style="text-align: center">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+                           tabindex="-1">이전</a>
+                    </li>
+                {% else %}
+                    <li class="page-item invisible">
+                        <a class="page-link" href="#" tabindex="-1">이전</a>
+                    </li>
+                {% endif %}
+
+                {% for page in page_range %}
+                    <li class="page-item {% if page == page_obj.number %} activate {% endif %}">
+                        <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                    </li>
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?page={{ page_obj.next_page_number }}">다음</a>
+                    </li>
+                {% else %}
+                    <li class="page-item invisible">
+                        <a class="page-link" href="#">다음</a>
+                    </li>
+                {% endif %}
+            </ul>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}

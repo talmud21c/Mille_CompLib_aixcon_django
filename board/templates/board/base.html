@@ -38,32 +38,30 @@
         </div>
     </div>
 </div>
-<section id="tabs" class="project-tab">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="tab-content" id="nav-tabContent">
-                    <ul class="nav nav-tabs" id="boardTap" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <div><a class="nav-link active" id="sabo-tab" data-toggle="tab" href="#sabo" role="tab" aria-controls="sabo" aria-selected="true">사보 게시판</a></div>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <div><a class="nav-link" id="notice-tab" data-toggle="tab" href="#notice" role="tab" aria-controls="notice" aria-selected="true">공지사항</a></div>
-                            <a href="/notice/">공지사항</a>
-                        </li>
-                        {% block sabo_tab %}
 
-                            {% endblock %}
-                        </div>
-                        <div class="tab-pane fade" id="notice" role="tabpanel" aria-labelledby="notice-tab">
-                            {% block notice_tab %}
-                            {% endblock %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="post_list-tab" data-toggle="tab" href="#post_list" role="tab" aria-controls="nav-home" aria-selected="true">사보게시판</a>
+        <a class="nav-item nav-link" id="notice-tab" data-toggle="tab" href="#notice" role="tab" aria-controls="nav-notice" aria-selected="false">공지사항</a>
     </div>
-</section>
+    {% if 'post_list.html' %}
+        <div>
+        <a href=""><button class="btn btn-secondary">고정글 설정</button></a>
+        <a href="{% url 'board:post_write' %}"><button class="btn btn-secondary">글 쓰기</button></a>
+    </div>
+    {% endif %}
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="post_list" role="tabpanel" aria-labelledby="post_list-tab">
+        {% block sabo_tab %}
+
+        {% endblock %}
+    </div>
+    <div class="tab-pane fade" id="notice" role="tabpanel" aria-labelledby="notice-tab">
+        {% block notice_tab %}
+
+        {% endblock %}
+    </div>
+</div>
 </body>
 </html>

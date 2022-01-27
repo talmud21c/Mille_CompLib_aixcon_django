@@ -1,8 +1,5 @@
-from django.contrib import messages
-from django.shortcuts import redirect, render, get_object_or_404
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
-
-import board.views
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from .models import Post, Notice
 
 
@@ -52,6 +49,11 @@ class PostEdit(UpdateView):
     model = Post
     template_name = 'board/post_write.html'
     fields = ['title', 'file_upload', 'pin', 'content']
+
+
+class PostDelete(DeleteView):
+    model = Post
+    success_url = reverse_lazy('board:post_list')
 
 
 class NoticeList(ListView):
