@@ -1,19 +1,20 @@
 {% extends 'board/base.html' %}
 {% block notice_tab %}
     <div class="ml-auto">
-            <a href=""><button class="btn btn-secondary">고정글 설정</button></a>
+            <a href="{% url 'board:notice_topFix' %}"><button class="btn btn-secondary">고정글 설정</button></a>
             <a href="{% url 'board:notice_write' %}"><button class="btn btn-secondary">글쓰기</button></a>
         </div>
     </div>
 </div>
+    </br>
     <table class="table table-hover" style="text-align: center;">
         <thead>
         <tr>
-            <th scope="col-1">번호</th>
-            <th scope="col-2">카테고리</th>
-            <th scope="col-5">제목</th>
-            <th scope="col-2">등록일</th>
-            <th scope="col-2">Handle</th>
+            <th scope="row">번호</th>
+            <th scope="row">카테고리</th>
+            <th scope="row">제목</th>
+            <th scope="row">등록일</th>
+            <th scope="row">Handle</th>
         </tr>
         {% if n %}
         {% else %}
@@ -21,7 +22,11 @@
                 {% for pin in notice_fixed %}
                     <tr class="table-warning table-hover">
                         <td><i class="fas fa-bullhorn"></i></td>
-                        <td>{{ pin.category }}</td>
+                        {% if pin.category %}
+                            <td><span class="badge badge-pill badge-warning">{{ pin.category }}</span></td>
+                            {% else %}
+                            <td><span class="badge badge-pill badge-secondary">기타</span></td>
+                        {% endif %}
                         <td><a href="{{ pin.get_absolute_url }}">{{ pin.title }}</a></td>
                         <td>{{ pin.created_at|date:'Y-m-d' }}</td>
                         <td></td>
@@ -34,7 +39,16 @@
         {% for n in notice_list %}
             <tr>
                 <th scope="row">{{ n.pk }}</th>
-                <td>{{ n.category }}</td>
+{#                {% if n.category == 'event' %}#}
+{#                            <td><span class="badge badge-pill badge-warning">event</span></td>#}
+{#                            {% elif n.category == '도서추천' %}#}
+{#                            <td><span class="badge badge-pill badge-success">도서추천</span></td>#}
+{#                            {% elif n.category == '공지' %}#}
+{#                            <td><span class="badge badge-pill badge-danger">공지</span></td>#}
+{#                            {% else %}#}
+{#                            <td><span class="badge badge-pill badge-secondary">기타</span></td>#}
+{#                        {% endif %}#}
+                <td><span class="badge badge-pill badge-warning">{{ n.category }}</span></td>
                 <td><a href="{{ n.get_absolute_url }}">{{ n.title }}</a></td>
                 <td>{{ n.created_at|date:'Y-m-d' }}</td>
                 <td>

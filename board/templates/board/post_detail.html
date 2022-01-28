@@ -8,6 +8,7 @@
     </div>
     </div>
     </div>
+    </br>
     <div class="container-fluid">
         <div class="row" style="text-align: center; background-color: silver;">
             <div class="col-lg-2">No.{{ post.pk }}</div>
@@ -26,8 +27,8 @@
                             <i class="far fa-file-image"></i>{{ post.get_file_name }}
                         </a>
                     {% else %}
+                        <span style="background-color: silver;">첨부파일 다운로드:</span>
                         <a href="{{ post.file_upload.url }}" class="col-lg-auto" style="width:auto; background-color: silver;" role="button" download>
-                            첨부파일 다운로드:
                             {% if post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
                                 <i class="far fa-file-excel"></i>
                             {% elif post.get_file_ext == 'txt' %}

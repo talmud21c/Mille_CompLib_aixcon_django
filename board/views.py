@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Post, Notice
+from .models import Post, Notice, Category
 
 
 class PostList(ListView):
@@ -11,7 +11,7 @@ class PostList(ListView):
     ordering = '-pk'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(PostList, self).get_context_data(**kwargs)
         # 상단고정
         post_fixed = Post.objects.filter(pin=True).order_by('-pk')
         context['post_fixed'] = post_fixed
@@ -40,15 +40,15 @@ class PostDelete(DeleteView):
     success_url = reverse_lazy('board:post_list')
 
 
-class PostSetFix(ListView):
+class PostTopFix(ListView):
     model = Post
     paginate_by = 5
-    template_name = 'board/post_set_fix.html'
+    template_name = 'board/post_top_fix.html'
     ordering = '-pk'
     fields = ['pin', 'pk', 'title', 'created_at']
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(PostTopFix, self).get_context_data(**kwargs)
         # 상단고정
         post_fixed = Post.objects.filter(pin=True).order_by('-pk')
         context['post_fixed'] = post_fixed
@@ -63,11 +63,10 @@ class NoticeList(ListView):
     ordering = '-pk'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(NoticeList, self).get_context_data()
         # 상단고정
         notice_fixed = Notice.objects.filter(pin=True).order_by('-pk')
         context['notice_fixed'] = notice_fixed
-
         return context
 
 
@@ -90,3 +89,19 @@ class NoticeEdit(UpdateView):
 class NoticeDelete(DeleteView):
     model = Notice
     success_url = reverse_lazy('board:notice_list')
+
+
+class NoticeTopFix(ListView):
+    model = Notice
+    paginate_by = 5
+    template_name = 'board/notice_top_fix.html'
+    ordering = '-pk'
+    fields = ['pin', 'pk', 'category', 'title', 'created_at']
+
+    def get_context_data(self, **kwargs):
+        context = super(NoticeTopFix, self).get_context_data(**kwargs)
+        # 상단고정
+        notice_fixed = Notice.objects.filter(pin=True).order_by('-pk')
+        context['notice_fixed'] = notice_fixed
+
+        return context

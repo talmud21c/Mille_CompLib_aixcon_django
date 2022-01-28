@@ -21,5 +21,18 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name', )}
 
 
-admin.site.register(Notice)
+class NoticeAdmin(admin.ModelAdmin):
+    list_display = (
+        'pk',
+        'title',
+        'category',
+        'pin',
+        'content',
+        'created_at',
+        'file_upload',
+        'author',
+    )
+
+
+admin.site.register(Notice, NoticeAdmin)
 admin.site.register(Category, CategoryAdmin)

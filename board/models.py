@@ -22,7 +22,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, verbose_name='작성자')
 
     def __str__(self):
-        return f'[{self.pin}] [{self.pk}] {self.title} - {self.author}'
+        return f'[{self.pin}] [{self.pk}] {self.title} __ {self.author}'
 
     def get_absolute_url(self):
         return f'/board/{self.pk}/'
@@ -49,24 +49,24 @@ class Category(models.Model):
 # 공지사항
 class Notice(models.Model):
     # 제목
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, verbose_name='제목')
     # 고정글
     pin = models.BooleanField(verbose_name='고정글', default=False)
     # 카테고리
-    category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
+    category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL, verbose_name='카테고리')
     # 글 내용
-    content = RichTextField(blank=True, null=True)
+    content = RichTextField(blank=True, null=True, verbose_name='내용')
     # 작성일
     created_at = models.DateTimeField(auto_now_add=True)
     # 수정시 수정된 날짜 업데이트
     updated_at = models.DateTimeField(auto_now=True)
     # 파일 업로드
-    file_upload = models.FileField(upload_to='board/files/%Y/%m/%d/', blank=True)
+    file_upload = models.FileField(upload_to='board/files/%Y/%m/%d/', blank=True, verbose_name='첨부파일')
     # 작성자
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return f'[{self.pk}] [{self.pin}] [{self.category}] {self.title} - {self.author}'
+        return f'[{self.pk}] [{self.pin}] [{self.category}] {self.title} __ {self.author}'
 
     def get_absolute_url(self):
         return f'/notice/{self.pk}/'
