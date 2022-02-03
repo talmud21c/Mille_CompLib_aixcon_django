@@ -80,13 +80,13 @@ class NoticeDetail(DetailView):
 class NoticeCreate(CreateView):
     model = Notice
     template_name = 'board/notice_write.html'
-    fields = ['title', 'category', 'file_upload', 'pin', 'content']
+    fields = ['category', 'title', 'file_upload', 'pin', 'content']
 
 
 class NoticeUpdate(UpdateView):
     model = Notice
     template_name = 'board/notice_write.html'
-    fields = ['title', 'category', 'file_upload', 'pin', 'content']
+    fields = ['category', 'title', 'file_upload', 'pin', 'content']
 
 
 class NoticeDelete(DeleteView):

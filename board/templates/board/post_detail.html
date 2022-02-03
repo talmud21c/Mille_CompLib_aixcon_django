@@ -19,8 +19,8 @@
 {% block sabo_tab %}
     <div class="container-fluid">
         <div class="row" style="text-align: center; background-color: silver;">
-            <div class="col-lg-2">No.{{ post.pk }}</div>
-            <div class="col-lg-8">{{ post.title }}</div>
+            <div class="col-lg-1">No.{{ post.pk }}</div>
+            <div class="col-lg-9"><b>{{ post.title }}</b></div>
             <div class="col-lg-2">{{ post.created_at|date:'Y-m-d' }}</div>
         </div>
         <div class="row">

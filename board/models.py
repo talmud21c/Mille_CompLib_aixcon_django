@@ -68,7 +68,6 @@ class Notice(models.Model):
     def __str__(self):
         return f'[{self.pk}] [{self.pin}] [{self.category.name}] {self.title} __ {self.author}'
 
-
     def get_absolute_url(self):
         return f'/notice/{self.pk}/'
 
