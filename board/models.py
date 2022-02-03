@@ -66,7 +66,8 @@ class Notice(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return f'[{self.pk}] [{self.pin}] [{self.category}] {self.title} __ {self.author}'
+        return f'[{self.pk}] [{self.pin}] [{self.category.name}] {self.title} __ {self.author}'
+
 
     def get_absolute_url(self):
         return f'/notice/{self.pk}/'

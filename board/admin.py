@@ -18,7 +18,7 @@ admin.site.register(Post, PostAdmin)
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name', )}
+    prepopulated_fields = {'slug': ( 'name', )}
 
 
 class NoticeAdmin(admin.ModelAdmin):

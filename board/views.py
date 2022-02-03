@@ -29,7 +29,7 @@ class PostCreate(CreateView):
     fields = ['title', 'file_upload', 'pin', 'content']
 
 
-class PostEdit(UpdateView):
+class PostUpdate(UpdateView):
     model = Post
     template_name = 'board/post_write.html'
     fields = ['title', 'file_upload', 'pin', 'content']
@@ -65,8 +65,8 @@ class NoticeList(ListView):
     context_object_name = 'notice_list'
     ordering = '-pk'
 
-    def get_context_data(self, **kwargs):
-        context = super(NoticeList, self).get_context_data()
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(NoticeList, self).get_context_data(**kwargs)
         # 상단고정
         notice_fixed = Notice.objects.filter(pin=True).order_by('-pk')
         context['notice_fixed'] = notice_fixed
@@ -83,7 +83,7 @@ class NoticeCreate(CreateView):
     fields = ['title', 'category', 'file_upload', 'pin', 'content']
 
 
-class NoticeEdit(UpdateView):
+class NoticeUpdate(UpdateView):
     model = Notice
     template_name = 'board/notice_write.html'
     fields = ['title', 'category', 'file_upload', 'pin', 'content']
