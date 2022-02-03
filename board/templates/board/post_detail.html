@@ -1,14 +1,22 @@
 {% extends 'board/base.html' %}
 <!DOCTYPE html>
 {% load static %}
+{% block nav_bar %}
+    <div class="container">
+        <div class="row">
+            <div class="col-auto">
+                <a href="{% url 'board:post_list' %}"><button class="btn btn-warning">사보게시판</button></a>
+                <a href="{% url 'board:notice_list' %}"><button class="btn btn-warning">공지사항</button></a>
+            </div>
+            <div class="ml-auto">
+                <a href="/board/{{ post.pk }}/edit"><button class="btn btn-secondary">수정</button></a>
+                <a href="/board/{{ post.pk }}/delete"><button class="btn btn-danger">삭제</button></a>
+            </div>
+        </div>
+    </div>
+    <br/>
+{% endblock %}
 {% block sabo_tab %}
-    <div class="ml-auto">
-        <a href="/board/{{ post.pk }}/edit"><button class="btn btn-secondary">수정</button></a>
-        <a href="/board/{{ post.pk }}/delete"><button class="btn btn-danger">삭제</button></a>
-    </div>
-    </div>
-    </div>
-    </br>
     <div class="container-fluid">
         <div class="row" style="text-align: center; background-color: silver;">
             <div class="col-lg-2">No.{{ post.pk }}</div>
@@ -47,8 +55,8 @@
             </div>
         </div>
         <div>
-            <div class="col-xs-12">
-                <a href="/"><div class="btn btn-warning">목록</div></a>
+            <div class="text-center">
+                <a href="/"><div class="btn btn-light">목록</div></a>
             </div>
         </div>
     </div>

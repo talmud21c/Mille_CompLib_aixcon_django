@@ -38,12 +38,9 @@
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-auto">
-            <a href="{% url 'board:post_list' %}"><button class="btn btn-warning">사보게시판</button></a>
-            <a href="{% url 'board:notice_list' %}"><button class="btn btn-warning">공지사항</button></a>
-        </div>
+{% block nav_bar %}
+
+{% endblock %}
 
 {% block sabo_tab %}
 
@@ -52,6 +49,8 @@
 {% block notice_tab %}
 
 {% endblock %}
+
+
 
 </body>
 </html>

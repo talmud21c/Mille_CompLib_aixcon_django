@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Post, Notice, Category
+from .models import Post, Notice
 
 
 class PostList(ListView):

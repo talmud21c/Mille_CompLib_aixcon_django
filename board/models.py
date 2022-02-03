@@ -9,7 +9,7 @@ class Post(models.Model):
     # 게시글 제목
     title = models.CharField(max_length=50, verbose_name='제목')
     # 고정글
-    pin = models.BooleanField(verbose_name='고정글', default=False)
+    pin = models.BooleanField(verbose_name='고정글 설정', default=False)
     # 글 내용
     content = RichTextField(blank=True, null=True, verbose_name='내용')
     # 작성일(작성된 날짜 자동 등록)
@@ -51,7 +51,7 @@ class Notice(models.Model):
     # 제목
     title = models.CharField(max_length=50, verbose_name='제목')
     # 고정글
-    pin = models.BooleanField(verbose_name='고정글', default=False)
+    pin = models.BooleanField(verbose_name='중요글 설정', default=False)
     # 카테고리
     category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL, verbose_name='카테고리')
     # 글 내용

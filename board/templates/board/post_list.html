@@ -1,14 +1,22 @@
 {% extends 'board/base.html' %}
-
-{% block sabo_tab %}
-    <div class="ml-auto">
+{% load static %}
+{% block nav_bar %}
+<div class="container">
+    <div class="row">
+        <div class="col-auto">
+            <a href="{% url 'board:post_list' %}"><button class="btn btn-warning">사보게시판</button></a>
+            <a href="{% url 'board:notice_list' %}"><button class="btn btn-warning">공지사항</button></a>
+        </div>
+        <div class="ml-auto">
             <a href="{% url 'board:post_topFix' %}"><button class="btn btn-secondary">고정글 설정</button></a>
             <a href="{% url 'board:post_write' %}"><button class="btn btn-secondary">글쓰기</button></a>
         </div>
     </div>
 </div>
-    </br>
-    <table class="table table-hover" style="text-align: center;">
+<br/>
+{% endblock %}
+{% block sabo_tab %}
+    <table class="table table-hover col-lg-12" style="text-align: center;">
         <thead>
         <tr>
             <th scope="col">번호</th>

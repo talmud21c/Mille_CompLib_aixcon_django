@@ -1,4 +1,16 @@
 {% extends 'board/base.html' %}
+{% load static %}
+{% block nav_bar %}
+    <div class="container">
+        <div class="row">
+            <div class="col-auto">
+                <a href="{% url 'board:post_list' %}"><button class="btn btn-warning">사보게시판</button></a>
+                <a href="{% url 'board:notice_list' %}"><button class="btn btn-warning">공지사항</button></a>
+            </div>
+        </div>
+    </div>
+    <br/>
+{% endblock %}
 {% block sabo_tab %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -6,7 +18,9 @@
             {{ form.media }}
             {{ form }}
         </table>
+        <div class="text-center">
             <button type="submit" class="btn btn-warning float-none">등록</button>
             <a href="{% url 'board:post_list' %}"><button type="button" class="btn btn-secondary float-none" data-target="">취소</button></a>
+        </div>
     </form>
 {% endblock %}
