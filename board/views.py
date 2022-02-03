@@ -39,6 +39,9 @@ class PostDelete(DeleteView):
     model = Post
     success_url = reverse_lazy('board:post_list')
 
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
+
 
 class PostTopFix(ListView):
     model = Post
@@ -89,6 +92,9 @@ class NoticeEdit(UpdateView):
 class NoticeDelete(DeleteView):
     model = Notice
     success_url = reverse_lazy('board:notice_list')
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
 
 
 class NoticeTopFix(ListView):

@@ -62,7 +62,7 @@
                 <td>
                     <div class="d-grid gap-2 d-md-block">
                         <a href="/notice/{{ n.pk }}/edit/"><button class="btn btn-secondary" type="button">수정</button></a>
-                        <a href="/notice/{{ n.pk }}/delete/"><button class="btn btn-danger" type="button">삭제</button></a>
+                        <a href="/notice/{{ n.pk }}/delete/" onclick="return confirm('정말 {{ n.title }}을/를 삭제 하시겠습니까?');"><button class="btn btn-danger" type="button">삭제</button></a>
                     </div>
                 </td>
             </tr>
