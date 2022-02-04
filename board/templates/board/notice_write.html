@@ -4,8 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-auto">
-                <a href="{% url 'board:post_list' %}"><button class="btn btn-warning">사보게시판</button></a>
-                <a href="{% url 'board:notice_list' %}"><button class="btn btn-warning">공지사항</button></a>
+                <a href="{% url 'board:post_list' %}"><button class="btn btn-outline-warning">사보 게시판</button></a>
+                <a href="{% url 'board:notice_list' %}"><button class="btn btn-outline-warning">공지사항</button></a>
             </div>
         </div>
     </div>
@@ -15,12 +15,14 @@
 <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <table class="table table-sm">
-            {{ form.media }}
             {{ form }}
+            {{ form.media }}
         </table>
         <div class="text-center">
             <button type="submit" class="btn btn-warning float-none" onclick="return confirm('게시글을 등록 하시겠습니까?');">등록</button>
-            <a href="{% url 'board:notice_list' %}" onclick="return confirm('변경된 내용은 저장되지 않습니다.\n그래도 취소하시겠습니까?');"><button type="button" class="btn btn-secondary float-none" data-target="">취소</button></a>
+            <a href="{% url 'board:notice_list' %}" onclick="return confirm('변경된 내용은 저장되지 않습니다.\n그래도 취소하시겠습니까?');">
+                <button type="button" class="btn btn-secondary float-none" data-target="">취소</button>
+            </a>
         </div>
     </form>
 {% endblock %}

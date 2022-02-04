@@ -43,7 +43,8 @@ class PostDelete(DeleteView):
         return self.post(request, *args, **kwargs)
 
 
-class PostTopFix(ListView):
+# 고정글 설정 페이지
+class PostTopFix(ListView, UpdateView):
     model = Post
     paginate_by = 5
     template_name = 'board/post_top_fix.html'
@@ -67,7 +68,7 @@ class NoticeList(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(NoticeList, self).get_context_data(**kwargs)
-        # 상단고정
+        # 상단 고정
         notice_fixed = Notice.objects.filter(pin=True).order_by('-pk')
         context['notice_fixed'] = notice_fixed
         return context

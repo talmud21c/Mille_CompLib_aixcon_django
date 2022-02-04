@@ -1,10 +1,10 @@
 {% extends 'board/base.html' %}
 {% block nav_bar %}
     <div class="container">
-        <div class="row">
+        <div class="row border-bottom">
             <div class="col-auto">
-                <a href="{% url 'board:post_list' %}"><button class="btn btn-warning">사보게시판</button></a>
-                <a href="{% url 'board:notice_list' %}"><button class="btn btn-warning">공지사항</button></a>
+                <a href="{% url 'board:post_list' %}"><button class="btn btn-outline-warning">사보 게시판</button></a>
+                <a href="{% url 'board:notice_list' %}"><button class="btn btn-outline-warning">공지사항</button></a>
             </div>
             <div class="ml-auto">
                 <a href="{% url 'board:notice_topFix' %}"><button class="btn btn-secondary">고정글 설정</button></a>
@@ -34,7 +34,7 @@
                             {% if pin.category.name == 'event' %}
                                 <td><span class="badge badge-pill badge-warning">{{ pin.category }}</span></td>
                             {% elif pin.category.name == '도서추천' %}
-                                <td><span class="badge badge-pill badge-success">{{ pin.category }}</span></td>
+                                <td><span class="badge badge-pill badge-info">{{ pin.category }}</span></td>
                             {% elif pin.category.name == '공지' %}
                                 <td><span class="badge badge-pill badge-danger">{{ pin.category }}</span></td>
                             {% else %}
@@ -58,7 +58,7 @@
                 {% if n.category.name == 'event' %}
                     <td><span class="badge badge-pill badge-warning">{{ n.category }}</span></td>
                 {% elif n.category.name == '도서추천' %}
-                    <td><span class="badge badge-pill badge-success">{{ n.category }}</span></td>
+                    <td><span class="badge badge-pill badge-info">{{ n.category }}</span></td>
                 {% elif n.category.name == '공지' %}
                     <td><span class="badge badge-pill badge-danger">{{ n.category }}</span></td>
                 {% else %}

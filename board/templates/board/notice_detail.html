@@ -4,8 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-auto">
-                <a href="{% url 'board:post_list' %}"><button class="btn btn-warning">사보게시판</button></a>
-                <a href="{% url 'board:notice_list' %}"><button class="btn btn-warning">공지사항</button></a>
+                <a href="{% url 'board:post_list' %}"><button class="btn btn-outline-warning">사보 게시판</button></a>
+                <a href="{% url 'board:notice_list' %}"><button class="btn btn-outline-warning">공지사항</button></a>
             </div>
             <div class="ml-auto">
                 <a href="/notice/{{ notice.pk }}/update"><button class="btn btn-secondary">수정</button></a>
@@ -24,7 +24,7 @@
                     {% if notice.category.name == 'event' %}
                         <td><span class="badge badge-pill badge-warning">{{ notice.category }}</span></td>
                     {% elif notice.category.name == '도서추천' %}
-                        <td><span class="badge badge-pill badge-success">{{ notice.category }}</span></td>
+                        <td><span class="badge badge-pill badge-info">{{ notice.category }}</span></td>
                     {% elif notice.category.name == '공지' %}
                         <td><span class="badge badge-pill badge-danger">{{ notice.category }}</span></td>
                     {% else %}
@@ -45,12 +45,12 @@
                         <img src="{{ notice.file_upload.url }}" alt="{{ notice.get_file_name }}">
                         <br/>
 {#                        <span style="background-color: silver;">이미지 다운로드:</span>#}
-                        <a href="{{ notice.file_upload.url }}" class="col-lg-auto" style="width:auto; background-color: silver;" role="button" download>
+                        <a href="{{ notice.file_upload.url }}" class="col-lg-auto" role="button" download><button>
                             <i class="far fa-file-image"></i>{{ notice.get_file_name }}
-                        </a>
+                        </button></a>
                     {% else %}
 {#                        <span style="background-color: silver;">첨부파일 다운로드:</span>#}
-                        <a href="{{ notice.file_upload.url }}" class="col-lg-4" style="background-color: silver;" role="button" download>
+                        <a href="{{ notice.file_upload.url }}" class="col-lg-4" role="button" download><button>
                             {% if notice.get_file_ext == 'xlsx' or notice.get_file_ext == 'xls' %}
                                 <i class="far fa-file-excel"></i>
                             {% elif notice.get_file_ext == 'txt' %}
@@ -63,7 +63,7 @@
                                 <i class="fas fa-file-alt"></i>
                             {% endif %}
                             {{ notice.get_file_name }}
-                        </a>
+                        </button></a>
                     {% endif %}
                 {% endif %}
             </div>
