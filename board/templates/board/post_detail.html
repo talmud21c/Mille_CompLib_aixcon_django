@@ -33,12 +33,13 @@
                 {% if post.file_upload %}
                     {% if post.get_file_ext == 'jpg' or post.get_file_ext == 'jpeg' or post.get_file_ext == 'png' or post.get_file_ext == 'jfif' %}
                         <img src="{{ post.file_upload.url }}" alt="{{ post.get_file_name }}">
-                        <br/>
+                        <br/><br/><br/><br/><br/><br/><br/>
                         <span style="background-color: silver;">이미지 다운로드:</span>
                         <a href="{{ post.file_upload.url }}" class="col-lg-auto" style="width:auto; background-color: silver;" role="button" download>
                             <i class="far fa-file-image"></i>{{ post.get_file_name }}
                         </a>
                     {% else %}
+                        <br/><br/><br/><br/><br/><br/><br/>
                         <span style="background-color: silver;">첨부파일 다운로드:</span>
                         <a href="{{ post.file_upload.url }}" class="col-lg-auto" style="width:auto; background-color: silver;" role="button" download>
                             {% if post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}

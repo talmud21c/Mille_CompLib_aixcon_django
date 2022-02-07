@@ -3,11 +3,11 @@
 {% block nav_bar %}
 <div class="container">
     <div class="row">
-        <div class="col-auto">
+        <div class="col-lg">
             <a href="{% url 'board:post_list' %}"><button class="btn btn-outline-warning">사보 게시판</button></a>
             <a href="{% url 'board:notice_list' %}"><button class="btn btn-outline-warning">공지사항</button></a>
         </div>
-        <div class="ml-auto">
+        <div class="co-ml-auto">
             <a href="{% url 'board:post_topFix' %}"><button class="btn btn-secondary">고정글 설정</button></a>
             <a href="{% url 'board:post_write' %}"><button class="btn btn-secondary">글쓰기</button></a>
         </div>
@@ -16,13 +16,13 @@
 <br/>
 {% endblock %}
 {% block sabo_tab %}
-    <table class="table table-hover col-lg-12" style="text-align: center;">
+    <table class="table table-hover col-lg-auto" style="text-align: center;">
         <thead>
         <tr>
-            <th class="col-md-1" scope="col">번호</th>
-            <th class="col-md-7" scope="col">제목</th>
-            <th class="col-md-2" scope="col">등록일</th>
-            <th class="col-md-2" scope="col">Handle</th>
+            <th class="col-lg-1" scope="col">번호</th>
+            <th class="col-lg-7" scope="col">제목</th>
+            <th class="col-lg-2" scope="col">등록일</th>
+            <th class="col-lg-2" scope="col">Handle</th>
         </tr>
         {% if p %}
         {% else %}

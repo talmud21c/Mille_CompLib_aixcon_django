@@ -43,12 +43,13 @@
                 {% if notice.file_upload %}
                     {% if notice.get_file_ext == 'jpg' or notice.get_file_ext == 'jpeg' or notice.get_file_ext == 'png' or notice.get_file_ext == 'jfif' %}
                         <img src="{{ notice.file_upload.url }}" alt="{{ notice.get_file_name }}">
-                        <br/>
+                        <br/><br/><br/><br/><br/><br/><br/>
 {#                        <span style="background-color: silver;">이미지 다운로드:</span>#}
                         <a href="{{ notice.file_upload.url }}" class="col-lg-auto" role="button" download><button>
                             <i class="far fa-file-image"></i>{{ notice.get_file_name }}
                         </button></a>
                     {% else %}
+                        <br/><br/><br/><br/><br/><br/><br/>
 {#                        <span style="background-color: silver;">첨부파일 다운로드:</span>#}
                         <a href="{{ notice.file_upload.url }}" class="col-lg-4" role="button" download><button>
                             {% if notice.get_file_ext == 'xlsx' or notice.get_file_ext == 'xls' %}
