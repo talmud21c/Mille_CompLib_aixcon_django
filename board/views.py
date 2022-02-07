@@ -3,15 +3,15 @@ from django.urls import reverse_lazy
 from .models import Post, Notice
 
 
-class PostList(ListView):
+class BoardList(ListView):
     model = Post
     paginate_by = 15
-    template_name = 'board/post_list.html'
-    context_object_name = 'post_list'
+    template_name = 'board/board_list.html'
+    context_object_name = 'board_list'
     ordering = '-pk'
 
     def get_context_data(self, **kwargs):
-        context = super(PostList, self).get_context_data(**kwargs)
+        context = super(BoardList, self).get_context_data(**kwargs)
         # 상단고정
         post_fixed = Post.objects.filter(pin=True).order_by('-pk')
         context['post_fixed'] = post_fixed
@@ -19,40 +19,41 @@ class PostList(ListView):
         return context
 
 
-class PostDetail(DetailView):
+class BoardDetail(DetailView):
     model = Post
+    template_name = 'board/board_detail.html'
 
 
-class PostCreate(CreateView):
+class BoardCreate(CreateView):
     model = Post
-    template_name = 'board/post_write.html'
+    template_name = 'board/board_write.html'
     fields = ['title', 'file_upload', 'pin', 'content']
 
 
-class PostUpdate(UpdateView):
+class BoardUpdate(UpdateView):
     model = Post
-    template_name = 'board/post_write.html'
+    template_name = 'board/board_write.html'
     fields = ['title', 'file_upload', 'pin', 'content']
 
 
-class PostDelete(DeleteView):
+class BoardDelete(DeleteView):
     model = Post
-    success_url = reverse_lazy('board:post_list')
+    success_url = reverse_lazy('board:board_list')
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
 
 # 고정글 설정 페이지
-class PostTopFix(ListView, UpdateView):
+class BoardTopFix(ListView, UpdateView):
     model = Post
     paginate_by = 5
-    template_name = 'board/post_top_fix.html'
+    template_name = 'board/board_top_fix.html'
     ordering = '-pk'
     fields = ['pin', 'pk', 'title', 'created_at']
 
     def get_context_data(self, **kwargs):
-        context = super(PostTopFix, self).get_context_data(**kwargs)
+        context = super(BoardTopFix, self).get_context_data(**kwargs)
         # 상단고정
         post_fixed = Post.objects.filter(pin=True).order_by('-pk')
         context['post_fixed'] = post_fixed

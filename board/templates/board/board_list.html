@@ -4,12 +4,12 @@
 <div class="container">
     <div class="row">
         <div class="col-lg">
-            <a href="{% url 'board:post_list' %}"><button class="btn btn-outline-warning">사보 게시판</button></a>
+            <a href="{% url 'board:board_list' %}"><button class="btn btn-outline-warning">사보 게시판</button></a>
             <a href="{% url 'board:notice_list' %}"><button class="btn btn-outline-warning">공지사항</button></a>
         </div>
         <div class="co-ml-auto">
-            <a href="{% url 'board:post_topFix' %}"><button class="btn btn-secondary">고정글 설정</button></a>
-            <a href="{% url 'board:post_write' %}"><button class="btn btn-secondary">글쓰기</button></a>
+            <a href="{% url 'board:board_topFix' %}"><button class="btn btn-secondary">고정글 설정</button></a>
+            <a href="{% url 'board:board_write' %}"><button class="btn btn-secondary">글쓰기</button></a>
         </div>
     </div>
 </div>
@@ -40,7 +40,7 @@
         </thead>
         <tbody>
         {# 게시글 #}
-        {% for p in post_list %}
+        {% for p in board_list %}
             <tr>
                 <th scope="row">{{ p.pk }}</th>
                 <td><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></td>
